@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29324.140
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MathM", "src\MathM.csproj", "{F7CDA345-7448-47B6-A734-A415C2C43676}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MathM.Tests", "tests\MathM.Tests.csproj", "{A7397061-3195-4293-90F8-48CDEED5875D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BFA86456-FD4B-4090-97FF-5EDAA8394A58}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+		stylecop.json = stylecop.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F7CDA345-7448-47B6-A734-A415C2C43676}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7CDA345-7448-47B6-A734-A415C2C43676}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7CDA345-7448-47B6-A734-A415C2C43676}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7CDA345-7448-47B6-A734-A415C2C43676}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7397061-3195-4293-90F8-48CDEED5875D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7397061-3195-4293-90F8-48CDEED5875D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7397061-3195-4293-90F8-48CDEED5875D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7397061-3195-4293-90F8-48CDEED5875D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0BD20E9E-940A-413F-B8D9-46F220ACCE72}
+	EndGlobalSection
+EndGlobal

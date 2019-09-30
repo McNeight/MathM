@@ -25,19 +25,20 @@
 
   <PropertyGroup>
     <FrameworkPathOverride Condition="'$(TargetFramework)' == 'net35'">$(MSBuildProgramFiles32)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client</FrameworkPathOverride>
-    <Authors>Neil McNeight</Authors>
-    <Copyright>Copyright © 2019 Neil McNeight. All rights reserved.</Copyright>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Authors>Nathan P Jones &amp; Neil McNeight</Authors>
+    <Copyright>Copyright © 2015-2019 Nathan P Jones. Copyright © 2019 Neil McNeight. All rights reserved.</Copyright>
+    <PackageLicenseFile></PackageLicenseFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/McNeight/MathM</PackageProjectUrl>
     <RepositoryUrl>https://github.com/McNeight/MathM.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>c# decimal math geometry trigonometry</PackageTags>
+    <PackageTags>c# decimal math mathf mathm geometry trigonometry abs acos acosh asin atan atan2 atanh cbrt ceiling cos cosh exp floor ieeeremainder log log10 max min pow round sign sin sinh sqrt tan tanh truncate</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageId>McNeight.MathM</PackageId>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard1.0|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>DEBUG</DefineConstants>
   </PropertyGroup>
 
@@ -46,7 +47,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard1.0|AnyCPU'" Include="docfx.console" Version="2.45.1">
+    <PackageReference Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard1.0|AnyCPU'" Include="docfx.console" Version="2.45.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -73,13 +74,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
   </ItemGroup>
 
 </Project>

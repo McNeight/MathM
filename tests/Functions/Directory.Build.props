@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+    <Deterministic>true</Deterministic>
+    <BaseIntermediateOutputPath>..\..\artifacts\obj\Tests.Functions\</BaseIntermediateOutputPath>
+    <BaseOutputPath>..\..\artifacts\bin\</BaseOutputPath>
+  </PropertyGroup>
+</Project>

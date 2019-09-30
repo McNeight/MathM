@@ -1,7 +1,0 @@
-<Project>
-  <PropertyGroup>
-    <Deterministic>true</Deterministic>
-    <BaseIntermediateOutputPath>..\artifacts\obj\MathM.Tests\</BaseIntermediateOutputPath>
-    <BaseOutputPath>..\artifacts\bin\</BaseOutputPath>
-  </PropertyGroup>
-</Project>

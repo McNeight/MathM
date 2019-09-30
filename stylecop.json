@@ -27,7 +27,7 @@
     },
     "documentationRules": {
       "companyName": "Neil McNeight",
-      "copyrightText": "Copyright © 2015-2019 Nathan P Jones.\nCopyright © 2019 {companyName}. All rights reserved.\nLicensed under the {licenseName} license. See {licenseFile} file in the project root for full license information.",
+      "copyrightText": "Copyright © 2015-2019 Nathan P Jones.\nCopyright © 2019 {companyName}. All rights reserved.\nLicensed under the {licenseName} license. See {licenseFile} file in the project root for\nfull license information.",
       "xmlHeader": true,
       "variables": {
         "licenseName": "MIT",

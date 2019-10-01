@@ -1,8 +1,8 @@
 language: csharp
 matrix:
   include:
-  - dotnet: 1.1.14
-    mono: none
+  # - dotnet: 1.1.14
+  #   mono: none
   - dotnet: 2.1.202
     mono: none
   - dotnet: 2.1.802
@@ -24,14 +24,14 @@ os:
   - linux
   - osx
 solution: MathM.sln
-install:
-  - nuget restore MathM.sln
-  - nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
+# install:
+#   - nuget restore MathM.sln
+#   - nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
 script:
   - dotnet restore
   - msbuild /p:Configuration=Release MathM.sln
 #  - mono ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./MyProject.Tests/bin/Release/MyProject.Tests.dll
-  - dotnet test
+#  - dotnet test
 cache:
   directories:
     - artifacts

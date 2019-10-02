@@ -20,26 +20,8 @@ branches:
   only:
   - master
 
-  # blacklist
-  except:
-  - gh-pages
-  - coverity_scan
-
 # Do not build on tags (GitHub only)
 skip_tags: true
-
-#---------------------------------#
-#    environment configuration    #
-#---------------------------------#
-
-# Operating system (build VM template)
-os: Windows Server 2012
-
-image: Visual Studio 2019
-
-# scripts that are called at very beginning, before repo cloning
-init:
-  - git config --global core.autocrlf input
 
 # enable patching of *.csproj files
 dotnet_csproj:
@@ -51,25 +33,30 @@ dotnet_csproj:
   file_version: '{version}'
   informational_version: '{version}'
 
-# Automatically register private account and/or project AppVeyor NuGet feeds.
-nuget:
-  account_feed: true
-  project_feed: true
-  disable_publish_on_pr: true     # disable publishing of .nupkg artifacts to
-                                  # account/project feeds for pull request builds
+#---------------------------------#
+#    environment configuration    #
+#---------------------------------#
+
+image: Visual Studio 2019
+
+# scripts that are called at very beginning, before repo cloning
+init:
+- cmd: git config --global core.autocrlf input
 
 #---------------------------------#
 #       build configuration       #
 #---------------------------------#
 
-# build platform, i.e. x86, x64, Any CPU. This setting is optional.
-platform: Any CPU
-
 # build Configuration, i.e. Debug, Release, etc.
 configuration: Release
 
+# build platform, i.e. x86, x64, Any CPU. This setting is optional.
+platform: Any CPU
+
+before_build:
+- cmd: dotnet restore
+
 build:
-  parallel: true
   project: MathM.sln
   publish_nuget: true
   publish_nuget_symbols: true
@@ -78,8 +65,15 @@ build:
   verbosity: minimal
 
 #---------------------------------#
-#        global handlers          #
+#             NuGet               #
 #---------------------------------#
+
+# Automatically register private account and/or project AppVeyor NuGet feeds.
+nuget:
+  account_feed: true
+  project_feed: true
+  disable_publish_on_pr: true     # disable publishing of .nupkg artifacts to
+                                  # account/project feeds for pull request builds
 
 #---------------------------------#
 #         notifications           #

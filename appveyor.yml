@@ -65,17 +65,6 @@ build:
   verbosity: minimal
 
 #---------------------------------#
-#             NuGet               #
-#---------------------------------#
-
-# Automatically register private account and/or project AppVeyor NuGet feeds.
-nuget:
-  account_feed: true
-  project_feed: true
-  disable_publish_on_pr: true     # disable publishing of .nupkg artifacts to
-                                  # account/project feeds for pull request builds
-
-#---------------------------------#
 #         notifications           #
 #---------------------------------#
 

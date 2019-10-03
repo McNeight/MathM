@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.0;netcoreapp2.1;</TargetFrameworks>
+    <SignAssembly>False</SignAssembly>
+    <AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
+    <RootNamespace>McNeight</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Authors>Nathan P Jones &amp; Neil McNeight</Authors>
+    <Copyright>Copyright © 2015-2019 Nathan P Jones. Copyright © 2019 Neil McNeight. All rights reserved.</Copyright>
+    <PackageLicenseFile/>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/McNeight/MathM</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/McNeight/MathM.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>c# decimal math mathf mathm geometry trigonometry abs acos acosh asin atan atan2 atanh cbrt ceiling cos cosh exp floor ieeeremainder log log10 max min pow round sign sin sinh sqrt tan tanh truncate</PackageTags>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageId>McNeight.MathM</PackageId>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\stylecop.json" Link="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Strings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

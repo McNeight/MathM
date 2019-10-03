@@ -54,10 +54,10 @@ configuration: Release
 platform: Any CPU
 
 before_build:
-- cmd: dotnet restore --source https://api.nuget.org/v3/index.json --source https://dotnet.myget.org/F/dotnet-core/api/v3/index.json
+- cmd: dotnet restore
 
 build:
-  project: MathM.sln
+  project: src\MathM-CI.csproj
   publish_nuget: true
   publish_nuget_symbols: true
   include_nuget_references: true

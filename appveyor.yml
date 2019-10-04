@@ -37,7 +37,12 @@ dotnet_csproj:
 #    environment configuration    #
 #---------------------------------#
 
-image: Visual Studio 2019
+image:
+- Visual Studio 2019
+- Visual Studio 2017
+- Visual Studio 2015
+- Ubuntu1804
+- Ubuntu1604
 
 # scripts that are called at very beginning, before repo cloning
 init:
@@ -58,11 +63,11 @@ before_build:
 
 build:
   project: MathM-CI.sln
-  publish_nuget: true
-  publish_nuget_symbols: true
-  include_nuget_references: true
+  #publish_nuget: true
+  #publish_nuget_symbols: true
+  #include_nuget_references: true
   # MSBuild verbosity level
-  verbosity: minimal
+  verbosity: detailed
 
 #---------------------------------#
 #         notifications           #

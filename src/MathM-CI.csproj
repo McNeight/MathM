@@ -10,7 +10,7 @@
   <PropertyGroup>
     <Authors>Nathan P Jones &amp; Neil McNeight</Authors>
     <Copyright>Copyright © 2015-2019 Nathan P Jones. Copyright © 2019 Neil McNeight. All rights reserved.</Copyright>
-    <PackageLicenseFile/>
+    <PackageLicenseFile />
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/McNeight/MathM</PackageProjectUrl>
     <RepositoryUrl>https://github.com/McNeight/MathM.git</RepositoryUrl>
@@ -20,6 +20,17 @@
     <PackageId>McNeight.MathM</PackageId>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="obj\**" />
+    <EmbeddedResource Remove="obj\**" />
+    <None Remove="obj\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="docfx.json" />
+    <None Remove="log.txt" />
+  </ItemGroup>
 
   <ItemGroup>
     <AdditionalFiles Include="..\stylecop.json" Link="stylecop.json" />

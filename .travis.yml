@@ -4,10 +4,10 @@ mono: none
 os:
   - linux
   - osx
-solution: src\MathM-CI.csproj
+solution: MathM-CI.sln
 script:
   - dotnet restore
-  - msbuild /p:Configuration=Release src\MathM-CI.csproj
+  - msbuild /p:Configuration=Release
   # - dotnet test
 cache:
   directories:

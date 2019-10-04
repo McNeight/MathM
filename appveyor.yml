@@ -54,7 +54,7 @@ configuration: Release
 platform: Any CPU
 
 before_build:
-- cmd: dotnet restore
+- cmd: dotnet restore MathM-CI.sln
 
 build:
   project: MathM-CI.sln

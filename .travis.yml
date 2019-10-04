@@ -6,8 +6,7 @@ os:
   - osx
 solution: MathM-CI.sln
 script:
-  - dotnet restore
-  - msbuild /p:Configuration=Release
+  - dotnet build --configuration Release MathM-CI.sln
   # - dotnet test
 cache:
   directories:

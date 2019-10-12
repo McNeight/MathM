@@ -51,13 +51,13 @@ Unfortunately, a lot of the usual number functionality is not provided for .NET.
 ## McNeight.MathM vs. System.MathF
 
 <table border="0">
-  <tr>
-    <th style="text-align:center">McNeight.MathM</th>
-    <th style="text-align:center">System.MathF</th>
-  </tr>
-  <tr>
-    <td style="text-align:left">
-      <div>
+<tr>
+<th style="text-align:center">McNeight.MathM</th>
+<th style="text-align:center">System.MathF</th>
+</tr>
+<tr>
+<td style="text-align:left">
+<div>
 
 ```cs
 namespace McNeight {
@@ -146,9 +146,9 @@ namespace System {
 }
 ```
 
-      </div>
-    </td>
-  </tr>
+</div>
+</td>
+</tr>
 </table>
 
 ## License

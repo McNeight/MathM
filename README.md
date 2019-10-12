@@ -57,7 +57,7 @@ Unfortunately, a lot of the usual number functionality is not provided for .NET.
   </tr>
   <tr>
     <td style="text-align:left">
-      <div class="highlight highlight-source-cs"><pre>
+      <pre><code class="csharp">
 namespace McNeight {
     public static class MathM {
         public const decimal E = 2.7182818284590452353602874714m;
@@ -96,10 +96,10 @@ namespace McNeight {
         public static decimal Truncate(decimal m);
     }
 }
-      </pre></div>
+      </code></pre>
     </td>
     <td style="text-align:left">
-      <div class="highlight highlight-source-cs"><pre>
+      <pre><code class="csharp">
 namespace System {
     public static class MathF {
         public const float E = 2.71828175f;
@@ -138,7 +138,7 @@ namespace System {
         public static float Truncate(float x);
     }
 }
-      </pre></div>
+      </code></pre>
     </td>
   </tr>
 </table>

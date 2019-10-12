@@ -58,6 +58,7 @@ Unfortunately, a lot of the usual number functionality is not provided for .NET.
   <tr>
     <td style="text-align:left">
       <div>
+
 ```cs
 namespace McNeight {
     public static class MathM {
@@ -98,10 +99,12 @@ namespace McNeight {
     }
 }
 ```
+
       </div>
     </td>
     <td style="text-align:left">
       <div>
+
 ```cs
 namespace System {
     public static class MathF {
@@ -142,6 +145,7 @@ namespace System {
     }
 }
 ```
+
       </div>
     </td>
   </tr>

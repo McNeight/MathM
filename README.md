@@ -1,4 +1,45 @@
 # MathM
+
+<table>
+  <tr>
+    <th style="text-align:center">Build Server</th>
+    <th>Operating System</th>
+    <th>Framework</th>
+    <th style="text-align:center">Status</th>
+  </tr>
+  <tr>
+    <td style="text-align:center" rowspan="5">AppVeyor</td>
+    <td>Visual Studio 2019</td>
+    <td>.NET Core SDK 3.0.100</td>
+    <td style="text-align:center" rowspan="5"><a href="https://ci.appveyor.com/project/McNeight/MathM"><img src="https://ci.appveyor.com/api/projects/status/pw5vamdgg1xqbt1w?svg=true" alt="AppVeyor build status" /></a></td>
+  </tr>
+  <tr>
+    <td>Visual Studio 2017</td>
+    <td>.NET Core SDK 2.2.108</td>
+  </tr>
+  <tr>
+    <td>Visual Studio 2015</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Ubuntu 18.04.3 LTS (Bionic Beaver)</td>
+    <td>.NET Core SDK 3.0.100</td>
+  </tr>
+  <tr>
+    <td>Ubuntu 16.04.6 LTS (Xenial Xerus)</td>
+    <td>.NET Core SDK 3.0.100</td>
+  </tr>
+  <tr>
+    <td style="text-align:center" rowspan="2">Travis</td>
+    <td>Mac OS X 10.13.3</td>
+    <td rowspan="2">.NET Core SDK 2.1.802</td>
+    <td style="text-align:center" rowspan="2"><a href="https://travis-ci.org/McNeight/MathM"><img src="https://travis-ci.org/McNeight/MathM.svg?branch=master" alt="Travis build status" /></a></td>
+  </tr>
+  <tr>
+    <td>Ubuntu 16.04.6 LTS (Xenial Xerus)</td>
+  </tr>
+</table>
+
 C# math library for supporting System.Decimal floating-point numberss.
 
 The .NET Decimal data type is included in .NET, but is often overlooked for scientific calculations. It's high precision and exact up to 28 decimal places and it's available in any .NET environment.
@@ -7,7 +48,59 @@ You might be in a situation where you just need a lot more precision than Double
 
 Unfortunately, a lot of the usual number functionality is not provided for .NET. For example, you can't calculate a square root or even perform [exponentiation](http://stackoverflow.com/questions/6425501/is-there-a-math-api-for-powdecimal-decimal). You can cast to Double for these operations, but you can end up with a significant loss of precision.
 
-## System.MathF
+## McNeight.MathM vs. System.MathF
+
+<table>
+  <tr>
+    <th style="text-align:center">McNeight.MathM</th>
+    <th style="text-align:center">System.MathF</th>
+  </tr>
+  <tr>
+    <td style="text-align:left">
+
+```cs
+namespace McNeight {
+    public static class MathM {
+        public const decimal E = 2.7182818284590452353602874714m;
+        public const decimal PI = 3.1415926535897932384626433833m;
+        public static decimal Abs(decimal m);
+        public static decimal Acos(decimal m);
+        // public static decimal Acosh(decimal m);
+        public static decimal Asin(decimal m);
+        // public static decimal Asinh(decimal m);
+        public static decimal Atan(decimal m);
+        public static decimal Atan2(decimal y, decimal x);
+        // public static decimal Atanh(decimal m);
+        // public static decimal Cbrt(decimal m);
+        public static decimal Ceiling(decimal m);
+        public static decimal Cos(decimal m);
+        // public static decimal Cosh(decimal m);
+        public static decimal Exp(decimal m);
+        public static decimal Floor(decimal m);
+        // public static decimal IEEERemainder(decimal x, decimal y);
+        public static decimal Log(decimal m);
+        public static decimal Log(decimal m, decimal newBase);
+        public static decimal Log10(decimal m);
+        public static decimal Max(decimal m1, decimal m2);
+        public static decimal Min(decimal m1, decimal m2);
+        public static decimal Pow(decimal x, decimal y);
+        // public static decimal Round(decimal m);
+        // public static decimal Round(decimal m, int digits);
+        // public static decimal Round(decimal m, int digits, MidpointRounding mode);
+        // public static decimal Round(decimal m, MidpointRounding mode);
+        public static int Sign(decimal m);
+        public static decimal Sin(decimal m);
+        // public static decimal Sinh(decimal m);
+        public static decimal Sqrt(decimal m);
+        public static decimal Tan(decimal m);
+        // public static decimal Tanh(decimal m);
+        public static decimal Truncate(decimal m);
+    }
+}
+```
+
+    </td>
+    <td style="text-align:left">
 
 ```cs
 namespace System {
@@ -48,7 +141,10 @@ namespace System {
         public static float Truncate(float x);
     }
 }
-```
+
+    </td>
+  </tr>
+</table>
 
 ## License
 

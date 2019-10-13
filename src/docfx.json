@@ -13,7 +13,7 @@
           "src": ".."
         }
       ],
-      "dest": "../docs/api",
+      "dest": "../docfx/api",
       "properties": {
         "TargetFramework": "netstandard1.0"
       },
@@ -25,17 +25,17 @@
     "content": [
       {
         "files": [
-          "docs/api/**.yml",
-          "docs/api/index.md"
+          "docfx/api/**.yml",
+          "docfx/api/index.md"
         ],
         "src": ".."
       },
       {
         "files": [
-          "docs/articles/**.md",
-          "docs/articles/**/toc.yml",
-          "docs/toc.yml",
-          "docs/*.md"
+          "docfx/articles/**.md",
+          "docfx/articles/**/toc.yml",
+          "docfx/toc.yml",
+          "docfx/*.md"
         ],
         "src": ".."
       }
@@ -43,7 +43,7 @@
     "resource": [
       {
         "files": [
-          "docs/images/**"
+          "docfx/images/**"
         ],
         "src": ".."
       }
@@ -51,16 +51,15 @@
     "overwrite": [
       {
         "files": [
-          "docs/apidoc/**.md"
+          "docfx/apidoc/**.md"
         ],
         "exclude": [
-          "obj/**",
-          "docs/_site/**"
+          "obj/**"
         ],
         "src": ".."
       }
     ],
-    "dest": "../docs/_site",
+    "dest": "../docs",
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [
@@ -70,7 +69,7 @@
     "markdownEngineName": "markdig",
     "noLangKeyword": false,
     "keepFileLink": false,
-    "cleanupCacheHistory": false,
+    "cleanupCacheHistory": true,
     "disableGitFeatures": false
   }
 }

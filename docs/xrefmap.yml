@@ -400,6 +400,12 @@ references:
   isSpec: "True"
   fullName: McNeight.MathM.Tanh
   nameWithType: MathM.Tanh
+- uid: McNeight.MathM.TAU
+  name: TAU
+  href: api/McNeight.MathM.html#McNeight_MathM_TAU
+  commentId: F:McNeight.MathM.TAU
+  fullName: McNeight.MathM.TAU
+  nameWithType: MathM.TAU
 - uid: McNeight.MathM.Truncate(System.Decimal)
   name: Truncate(Decimal)
   href: api/McNeight.MathM.html#McNeight_MathM_Truncate_System_Decimal_

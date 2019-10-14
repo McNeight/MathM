@@ -1,4 +1,5 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>netstandard1.0;netcoreapp2.1;</TargetFrameworks>
@@ -15,10 +16,12 @@
     <PackageProjectUrl>https://github.com/McNeight/MathM</PackageProjectUrl>
     <RepositoryUrl>https://github.com/McNeight/MathM.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>c# decimal math mathf mathm geometry trigonometry abs acos acosh asin atan atan2 atanh cbrt ceiling cos cosh exp floor ieeeremainder log log10 max min pow round sign sin sinh sqrt tan tanh truncate</PackageTags>
+    <PackageTags>c# decimal math mathf mathm geometry trigonometry abs acos acosh asin atan atan2 atanh cbrt ceiling cos cosh exp floor ieeeremainder log log10
+ max min pow round sign sin sinh sqrt tan tanh truncate</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageId>McNeight.MathM</PackageId>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <AssemblyName>MathM</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

@@ -19,7 +19,7 @@ namespace McNeight
     /// </summary>
     /// <remarks>
     /// The static fields and methods of the <see cref="MathM"/> class
-    /// correspond to those of the System.MathF classes, except that their
+    /// correspond to those of the <c>System.MathF</c> classes, except that their
     /// parameters are of type <see cref="decimal"/> rather than
     /// <see cref="float"/>, and they return <see cref="decimal"/> rather
     /// than <see cref="float"/> values.
@@ -30,9 +30,9 @@ namespace McNeight
         /// Represents the natural logarithmic base, specified by the constant, e.
         /// </summary>
         /// <remarks>
-        /// The value of this constant is 2.7182818284590452353602874714.
-        /// https://oeis.org/A001113
-        /// https://en.wikipedia.org/wiki/E_(mathematical_constant)
+        /// According to <see href="https://oeis.org/A001113">The On-Line Encyclopedia of Integer Sequences</see>,
+        /// the value of e (also called Euler's number or Napier's constant) to 104 digits is
+        /// 2.71828182845904523536028747135266249775724709369995957496696762772407663035354759457138217852516642742746.
         /// </remarks>
         public const decimal E = 2.7182818284590452353602874714m;
 
@@ -41,9 +41,9 @@ namespace McNeight
         /// diameter, specified by the constant, π.
         /// </summary>
         /// <remarks>
-        /// The value of this constant is 3.1415926535897932384626433833.
-        /// https://oeis.org/A000796
-        /// https://en.wikipedia.org/wiki/Pi
+        /// According to <see href="https://oeis.org/A000796">The On-Line Encyclopedia of Integer Sequences</see>,
+        /// the value of π (also called Archimedes's constant) to 104 digits is
+        /// 3.14159265358979323846264338327950288419716939937510582097494459230781640628620899862803482534211706798214.
         /// </remarks>
         public const decimal PI = 3.1415926535897932384626433833m;
 
@@ -65,18 +65,31 @@ namespace McNeight
         /// <summary>
         /// 2π - in radians is equivalent to 360 degrees.
         /// </summary>
+        /// <remarks>
+        /// According to <see href="https://oeis.org/A019692">The On-Line Encyclopedia of Integer Sequences</see>,
+        /// the value of 2π to 98 digits is
+        /// 6.28318530717958647692528676655900576839433879875021164194988918461563281257241799725606965068423413.
+        /// </remarks>
         private const decimal TwoPi = 6.2831853071795864769252867666m;
 
-        private const int MaxRoundingDigits = 28;
-
-        private const decimal DecimalRoundLimit = 1E28m;
+        /// <summary>
+        /// Represents the ratio of the circumference of a circle to its
+        /// radius, specified by the constant, τ.
+        /// </summary>
+        /// <remarks>
+        /// According to <see href="https://tauday.com/tau-manifesto">The Tau Manifesto</see>,
+        /// the value of τ to 100 digits is
+        /// 6.2831853071795864769252867665590057683943387987502116419498891846156328125724179972560696506842341359.
+        /// </remarks>
+        public const decimal TAU = 6.2831853071795864769252867666m;
 
         /// <summary>
         /// The value of the natural logarithm of 10.
         /// </summary>
         /// <remarks>
-        /// Full value is: 2.30258509299404568401799145468436420760110148862877297603332790096757
-        /// From: http://oeis.org/A002392/constant
+        /// According to <see href="https://oeis.org/A002392">The On-Line Encyclopedia of Integer Sequences</see>,
+        /// the value of Ln10 to 86 digits is
+        /// 2.30258509299404568401799145468436420760110148862877297603332790096757260967735248023599.
         /// </remarks>
         private const decimal Ln10 = 2.3025850929940456840179914547m;
 
@@ -84,10 +97,31 @@ namespace McNeight
         /// The value of the natural logarithm of 2.
         /// </summary>
         /// <remarks>
-        /// Full value is: .693147180559945309417232121458176568075500134360255254120680009493393621969694715605863326996418687
-        /// From: http://oeis.org/A002162/constant
+        /// According to <see href="https://oeis.org/A002162">The On-Line Encyclopedia of Integer Sequences</see>,
+        /// the value of Ln2 to 99 digits is
+        /// 0.693147180559945309417232121458176568075500134360255254120680009493393621969694715605863326996418687.
         /// </remarks>
         private const decimal Ln2 = 0.6931471805599453094172321215m;
+
+        private const int MaxRoundingDigits = 28;
+
+        private const decimal DecimalRoundLimit = 1E28m;
+
+        // Sign mask for the flags field. A value of zero in this bit indicates a
+        // positive Decimal value, and a value of one in this bit indicates a
+        // negative Decimal value.
+        //
+        // Look at OleAut's DECIMAL_NEG constant to check for negative values
+        // in native code.
+        private const int SignMask = unchecked((int)0x80000000);
+
+        // Scale mask for the flags field. This byte in the flags field contains
+        // the power of 10 to divide the Decimal value by. The scale byte must
+        // contain a value between 0 and 28 inclusive.
+        private const int ScaleMask = 0x00FF0000;
+
+        // Number of bits scale is shifted by.
+        private const int ScaleShift = 16;
 
         /// <summary>
         /// Smallest non-zero decimal value.
@@ -109,7 +143,7 @@ namespace McNeight
         /// Returns the absolute value of a <see cref="decimal"/> floating-point number.
         /// </summary>
         /// <param name="m">A number that is greater than or equal to <see cref="decimal.MinValue"/>, but less than or equal to <see cref="decimal.MaxValue"/>.</param>
-        /// <returns>A <see cref="decimal"/> number, x, such that 0 ≤ x ≤ <see cref="decimal.MaxValue"/>.</returns>
+        /// <returns>A number, x, such that 0 ≤ x ≤ <see cref="decimal.MaxValue"/>.</returns>
         /// <remarks>
         /// The absolute value of a <see cref="decimal"/> is its numeric value without its sign. For example, the absolute value of both 1.2 and -1.2 is 1.2.
         /// </remarks>
@@ -133,17 +167,18 @@ namespace McNeight
         /// <summary>
         /// Returns the angle whose cosine is the specified number.
         /// </summary>
-        /// <param name="m">A number representing a cosine, where -1 ≤ m ≤ 1.</param>
+        /// <param name="m">A number representing a cosine, where -1 ≤ <paramref name="m"/> ≤ 1.</param>
+        /// <returns>An angle, θ, measured in radians, such that 0 ≤ θ ≤ π.</returns>
         /// <remarks>
-        /// See http://en.wikipedia.org/wiki/Inverse_trigonometric_function
-        /// and http://mathworld.wolfram.com/InverseCosine.html
+        /// Multiply the return value by (180 / <see cref="PI"/>) to convert from radians to degrees.
         /// </remarks>
-        /// <returns></returns>
 #if !NET20 && !NET35 && !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static decimal Acos(decimal m)
         {
+            // See http://en.wikipedia.org/wiki/Inverse_trigonometric_function
+            // and http://mathworld.wolfram.com/InverseCosine.html
             if (m < -1m || m > 1m)
             {
                 throw new ArgumentOutOfRangeException(nameof(m), "Argument must be in the range -1 to 1 inclusive.");
@@ -171,8 +206,14 @@ namespace McNeight
         /// <summary>
         /// Returns the angle whose hyperbolic cosine is the specified number.
         /// </summary>
-        /// <param name="m"></param>
-        /// <returns></returns>
+        /// <param name="m">A number representing a hyperbolic cosine, where <paramref name="m"/> must be greater than or equal to 1, but less than or equal to ∞.</param>
+        /// <returns>An angle, θ, measured in radians, such that 0 ≤ θ ≤ ∞.</returns>
+        /// <remarks>
+        /// Multiply the return value by (180 / <see cref="PI"/>) to convert from radians to degrees.
+        /// </remarks>
+#if !NET20 && !NET35 && !NET40
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static decimal Acosh(decimal m) { throw null; }
 
         /// <summary>
@@ -219,9 +260,12 @@ namespace McNeight
         /// <summary>
         /// Returns the angle whose hyperbolic sine is the specified number.
         /// </summary>
-        /// <param name="x"></param>
+        /// <param name="m"></param>
         /// <returns></returns>
-        public static decimal Asinh(decimal x) { throw null; }
+#if !NET20 && !NET35 && !NET40
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static decimal Asinh(decimal m) { throw null; }
 
         /// <summary>
         /// Returns the angle whose tangent is the specified number.
@@ -349,6 +393,9 @@ namespace McNeight
         /// </summary>
         /// <param name="m"></param>
         /// <returns></returns>
+#if !NET20 && !NET35 && !NET40
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static decimal Atanh(decimal m) { throw null; }
 
         /// <summary>
@@ -356,6 +403,9 @@ namespace McNeight
         /// </summary>
         /// <param name="m"></param>
         /// <returns></returns>
+#if !NET20 && !NET35 && !NET40
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static decimal Cbrt(decimal m) { throw null; }
 
         /// <summary>
@@ -647,7 +697,7 @@ namespace McNeight
 #endif
         public static decimal Log(decimal m, decimal newBase)
         {
-            // Short circuit the checks below if d is 1 because
+            // Short circuit the checks below if m is 1 because
             // that will yield 0 in the numerator below and give us
             // 0 for any base, even ones that would yield infinity.
             if (m == 1)
@@ -765,7 +815,7 @@ namespace McNeight
         }
 
         /// <summary>
-        /// Returns a specified number raised to the specified power.
+        /// Returns a specified number <paramref name="x"/> raised to the specified power <paramref name="y"/>.
         /// </summary>
         /// <param name="x">A number to be raised to a power.</param>
         /// <param name="y">A number that specifies a power.</param>
@@ -825,119 +875,70 @@ namespace McNeight
             return result;
         }
 
-#if ROUND
+        /// <summary>
+        /// Rounds a <see cref="decimal"/> value to a given number of decimal places.
+        /// </summary>
+        /// <param name="m"></param>
+        /// <returns></returns>
 #if !NET20 && !NET35 && !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static decimal Round(decimal x)
+        public static decimal Round(decimal m)
         {
 #if NETFRAMEWORK || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP2_0 || NETCOREAPP2_1 || NETCOREAPP2_2 || NETCOREAPP3_0
-            return decimal.Round(x);
+            return decimal.Round(m);
 #else
-            // Returns a binary representation of a Decimal. The return value is an
-            // integer array with four elements. Elements 0, 1, and 2 contain the low,
-            // middle, and high 32 bits of the 96-bit integer part of the Decimal.
-            // Element 3 contains the scale factor and sign of the Decimal: bits 0-15
-            // (the lower word) are unused; bits 16-23 contain a value between 0 and
-            // 28, indicating the power of 10 to divide the 96-bit integer part by to
-            // produce the Decimal value; bits 24-30 are unused; and finally bit 31
-            // indicates the sign of the Decimal value, 0 meaning positive and 1
-            // meaning negative.
-            int[] bits = decimal.GetBits(x);
-            int exponent = float.ExtractExponentFromBits(bits);
+            return Round(m, 0, MidpointRounding.ToEven);
+#endif
+        }
 
-            if (exponent <= 0x7E)
-            {
-                if ((bits << 1) == 0)
-                {
-                    // Exactly +/- zero should return the original value
-                    return x;
-                }
+        /// <summary>
+        /// Rounds a <see cref="decimal"/> value to a given number of decimal places.
+        /// </summary>
+        /// <param name="m"></param>
+        /// <param name="digits"></param>
+        /// <returns></returns>
+#if !NET20 && !NET35 && !NET40
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static decimal Round(decimal m, int digits)
+        {
+#if NETFRAMEWORK || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP2_0 || NETCOREAPP2_1 || NETCOREAPP2_2 || NETCOREAPP3_0
+            return decimal.Round(m, digits);
+#else
+            return Round(m, digits, MidpointRounding.ToEven);
+#endif
+        }
 
-                // Any value less than or equal to 0.5 will always round to exactly zero
-                // and any value greater than 0.5 will always round to exactly one. However,
-                // we need to preserve the original sign for IEEE compliance.
-
-                float result = ((exponent == 0x7E) && (float.ExtractSignificandFromBits(bits) != 0)) ? 1.0f : 0.0f;
-                return CopySign(result, x);
-            }
-
-            if (exponent >= 0x96)
-            {
-                // Any value greater than or equal to 2^23 cannot have a fractional part,
-                // So it will always round to exactly itself.
-
-                return x;
-            }
-
-            // The absolute value should be greater than or equal to 1.0 and less than 2^23
-            Debug.Assert((0x7F <= exponent) && (exponent <= 0x95));
-
-            // Determine the last bit that represents the integral portion of the value
-            // and the bits representing the fractional portion
-
-            uint lastBitMask = 1U << (0x96 - exponent);
-            uint roundBitsMask = lastBitMask - 1;
-
-            // Increment the first fractional bit, which represents the midpoint between
-            // two integral values in the current window.
-
-            bits += lastBitMask >> 1;
-
-            if ((bits & roundBitsMask) == 0)
-            {
-                // If that overflowed and the rest of the fractional bits are zero
-                // then we were exactly x.5 and we want to round to the even result
-
-                bits &= ~lastBitMask;
-            }
-            else
-            {
-                // Otherwise, we just want to strip the fractional bits off, truncating
-                // to the current integer value.
-
-                bits &= ~roundBitsMask;
-            }
-
-            return BitConverter.Int32BitsToSingle((int)bits);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="m"></param>
+        /// <param name="mode"></param>
+        /// <returns></returns>
+#if !NET20 && !NET35 && !NET40
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static decimal Round(decimal m, MidpointRounding mode)
+        {
+#if NETFRAMEWORK || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP2_0 || NETCOREAPP2_1 || NETCOREAPP2_2 || NETCOREAPP3_0
+            return decimal.Round(m, mode);
+#else
+            return Round(m, 0, mode);
 #endif
         }
 
 #if !NET20 && !NET35 && !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static decimal Round(decimal x, int digits)
+        public static decimal Round(decimal m, int digits, MidpointRounding mode)
         {
 #if NETFRAMEWORK || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP2_0 || NETCOREAPP2_1 || NETCOREAPP2_2 || NETCOREAPP3_0
-            return decimal.Round(x, digits);
+            return decimal.Round(m, digits, mode);
 #else
-            return Round(x, digits, MidpointRounding.ToEven);
-#endif
-        }
-
-#if !NET20 && !NET35 && !NET40
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static decimal Round(decimal x, MidpointRounding mode)
-        {
-#if NETFRAMEWORK || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP2_0 || NETCOREAPP2_1 || NETCOREAPP2_2 || NETCOREAPP3_0
-            return decimal.Round(x, mode);
-#else
-            return Round(x, 0, mode);
-#endif
-        }
-
-#if !NET20 && !NET35 && !NET40
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static decimal Round(decimal x, int digits, MidpointRounding mode)
-        {
-#if NETFRAMEWORK || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP2_0 || NETCOREAPP2_1 || NETCOREAPP2_2 || NETCOREAPP3_0
-            return decimal.Round(x, digits, mode);
-#else
-            if ((digits < 0) || (digits > maxRoundingDigits))
+            if ((digits < 0) || (digits > MaxRoundingDigits))
             {
-                throw new ArgumentOutOfRangeException(nameof(digits), string.Format(SR.ArgumentOutOfRange_RoundingDigits, maxRoundingDigits));
+                throw new ArgumentOutOfRangeException(nameof(digits), string.Format(SR.ArgumentOutOfRange_RoundingDigits, MaxRoundingDigits));
             }
 
             if (mode < MidpointRounding.ToEven)
@@ -945,11 +946,20 @@ namespace McNeight
                 throw new ArgumentException(string.Format(SR.Argument_InvalidEnumValue, mode, nameof(MidpointRounding)), nameof(mode));
             }
 
-            if (Abs(x) < decimalRoundLimit)
+            var bits = decimal.GetBits(m);
+            var lo = bits[0];
+            var mid = bits[1];
+            var hi = bits[2];
+            var flags = bits[3];
+
+            int Scale = (byte)(flags >> ScaleShift);
+            // int scale = m.Scale - digits;
+
+            if (Abs(m) < DecimalRoundLimit)
             {
                 decimal power10 = roundPower10Decimal[digits];
 
-                x *= power10;
+                m *= power10;
 
                 switch (mode)
                 {
@@ -957,7 +967,7 @@ namespace McNeight
                     // it is rounded to the nearest value with an even least significant digit
                     case MidpointRounding.ToEven:
                         {
-                            x = Round(x);
+                            m = Round(m);
                             break;
                         }
 
@@ -969,7 +979,7 @@ namespace McNeight
 
                             if (Abs(fraction) >= 0.5m)
                             {
-                                x += Sign(fraction);
+                                m += Sign(fraction);
                             }
 
                             break;
@@ -981,13 +991,12 @@ namespace McNeight
                         }
                 }
 
-                x /= power10;
+                m /= power10;
             }
 
-            return x;
+            return m;
 #endif
         }
-#endif // ROUND
 
         /// <summary>
         /// 

@@ -1,4 +1,5 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>
@@ -29,7 +30,7 @@
     <Copyright>Copyright © 2015-2019 Nathan P Jones. Copyright © 2019 Neil McNeight. All rights reserved.</Copyright>
     <PackageLicenseFile></PackageLicenseFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageProjectUrl>https://github.com/McNeight/MathM</PackageProjectUrl>
+    <PackageProjectUrl>https://mcneight.github.io/MathM</PackageProjectUrl>
     <RepositoryUrl>https://github.com/McNeight/MathM.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>c# decimal math mathf mathm geometry trigonometry abs acos acosh asin atan atan2 atanh cbrt ceiling cos cosh exp floor ieeeremainder log log10 max min pow round sign sin sinh sqrt tan tanh truncate</PackageTags>
@@ -51,7 +52,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.4">
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.6">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

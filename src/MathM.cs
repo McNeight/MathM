@@ -7,6 +7,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 
 using SR = McNeight.Strings;
@@ -31,8 +32,8 @@ namespace McNeight
         /// </summary>
         /// <remarks>
         /// According to <see href="https://oeis.org/A001113">The On-Line Encyclopedia of Integer Sequences</see>,
-        /// the value of e (also called Euler's number or Napier's constant) to 104 digits is
-        /// 2.71828182845904523536028747135266249775724709369995957496696762772407663035354759457138217852516642742746.
+        /// the value of e (also called Euler's number or Napier's constant) to 100 decimal places is
+        /// 2.7182818284590452353602874713526624977572470936999595749669676277240766303535475945713821785251664274.
         /// </remarks>
         public const decimal E = 2.7182818284590452353602874714m;
 
@@ -42,10 +43,21 @@ namespace McNeight
         /// </summary>
         /// <remarks>
         /// According to <see href="https://oeis.org/A000796">The On-Line Encyclopedia of Integer Sequences</see>,
-        /// the value of π (also called Archimedes's constant) to 104 digits is
-        /// 3.14159265358979323846264338327950288419716939937510582097494459230781640628620899862803482534211706798214.
+        /// the value of π (also called Archimedes's constant) to 100 decimal places is
+        /// 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679.
         /// </remarks>
         public const decimal PI = 3.1415926535897932384626433833m;
+
+        /// <summary>
+        /// Represents the ratio of the circumference of a circle to its
+        /// radius, specified by the constant, τ.
+        /// </summary>
+        /// <remarks>
+        /// According to <see href="https://tauday.com/tau-manifesto">The Tau Manifesto</see>,
+        /// the value of τ to 100 decimal places is
+        /// 6.2831853071795864769252867665590057683943387987502116419498891846156328125724179972560696506842341359.
+        /// </remarks>
+        public const decimal TAU = 6.2831853071795864769252867666m;
 
         /// <summary>
         /// π/2 - in radians is equivalent to 90 degrees.
@@ -63,32 +75,11 @@ namespace McNeight
         private const decimal PiTwelfth = 0.2617993877991494365385536153m;
 
         /// <summary>
-        /// 2π - in radians is equivalent to 360 degrees.
-        /// </summary>
-        /// <remarks>
-        /// According to <see href="https://oeis.org/A019692">The On-Line Encyclopedia of Integer Sequences</see>,
-        /// the value of 2π to 98 digits is
-        /// 6.28318530717958647692528676655900576839433879875021164194988918461563281257241799725606965068423413.
-        /// </remarks>
-        private const decimal TwoPi = 6.2831853071795864769252867666m;
-
-        /// <summary>
-        /// Represents the ratio of the circumference of a circle to its
-        /// radius, specified by the constant, τ.
-        /// </summary>
-        /// <remarks>
-        /// According to <see href="https://tauday.com/tau-manifesto">The Tau Manifesto</see>,
-        /// the value of τ to 100 digits is
-        /// 6.2831853071795864769252867665590057683943387987502116419498891846156328125724179972560696506842341359.
-        /// </remarks>
-        public const decimal TAU = 6.2831853071795864769252867666m;
-
-        /// <summary>
         /// The value of the natural logarithm of 10.
         /// </summary>
         /// <remarks>
         /// According to <see href="https://oeis.org/A002392">The On-Line Encyclopedia of Integer Sequences</see>,
-        /// the value of Ln10 to 86 digits is
+        /// the value of Ln10 to 86 decimal places is
         /// 2.30258509299404568401799145468436420760110148862877297603332790096757260967735248023599.
         /// </remarks>
         private const decimal Ln10 = 2.3025850929940456840179914547m;
@@ -98,7 +89,7 @@ namespace McNeight
         /// </summary>
         /// <remarks>
         /// According to <see href="https://oeis.org/A002162">The On-Line Encyclopedia of Integer Sequences</see>,
-        /// the value of Ln2 to 99 digits is
+        /// the value of Ln2 to 99 decimal places is
         /// 0.693147180559945309417232121458176568075500134360255254120680009493393621969694715605863326996418687.
         /// </remarks>
         private const decimal Ln2 = 0.6931471805599453094172321215m;
@@ -152,13 +143,13 @@ namespace McNeight
 #endif
         public static decimal Abs(decimal m)
         {
+            // return new decimal(in d, d.flags & ~SignMask);
+            //
+            // Since decimal.Abs() is inaccessable, perform the operation
+            // the old fashioned way.
             if (m < 0m)
             {
                 m = -m;
-                if (m < 0m)
-                {
-                    AbsHelper();
-                }
             }
 
             return m;
@@ -181,7 +172,7 @@ namespace McNeight
             // and http://mathworld.wolfram.com/InverseCosine.html
             if (m < -1m || m > 1m)
             {
-                throw new ArgumentOutOfRangeException(nameof(m), "Argument must be in the range -1 to 1 inclusive.");
+                throw new ArgumentOutOfRangeException(nameof(m), string.Format(CultureInfo.CurrentCulture, SR.ArgumentOutOfRange_Range, -1m, 1m));
             }
 
             // Special cases
@@ -200,7 +191,7 @@ namespace McNeight
                 return 0m;
             }
 
-            return 2m * Atan(Sqrt(1 - (m * m)) / (1 + m));
+            return 2m * Atan(Sqrt(1m - (m * m)) / (1m + m));
         }
 
         /// <summary>
@@ -233,28 +224,28 @@ namespace McNeight
 #endif
         public static decimal Asin(decimal m)
         {
-            if (m < -1 || m > 1)
+            if (m < -1m || m > 1m)
             {
-                throw new ArgumentOutOfRangeException(nameof(m), "Argument must be in the range -1 to 1 inclusive.");
+                throw new ArgumentOutOfRangeException(nameof(m), string.Format(CultureInfo.CurrentCulture, SR.ArgumentOutOfRange_Range, -1m, 1m));
             }
 
             // Special cases
-            if (m == -1)
+            if (m == -1m)
             {
                 return -PiHalf;
             }
 
-            if (m == 0)
+            if (m == 0m)
             {
-                return 0;
+                return 0m;
             }
 
-            if (m == 1)
+            if (m == 1m)
             {
                 return PiHalf;
             }
 
-            return 2m * Atan(m / (1 + Sqrt(1 - (m * m))));
+            return 2m * Atan(m / (1m + Sqrt(1m - (m * m))));
         }
 
         /// <summary>
@@ -384,7 +375,7 @@ namespace McNeight
             }
 
             return y > 0
-                       ? aTan + PI          //   Q2: X-, Y+
+                       ? aTan + PI          // Q2: X-, Y+
                        : aTan - PI;         //   Q3: X-, Y-
         }
 
@@ -437,9 +428,9 @@ namespace McNeight
         public static decimal Cos(decimal m)
         {
             // Normalize to between -2Pi <= m <= 2Pi
-            m = Remainder(m, TwoPi);
+            m = Remainder(m, TAU);
 
-            if (m == 0 || m == TwoPi)
+            if (m == 0 || m == TAU)
             {
                 return 1m;
             }
@@ -630,9 +621,10 @@ namespace McNeight
 
             if (m >= 1)
             {
-                var power = 0m;
+                decimal power = 0m;
+                System.Math.Log(0d);
 
-                var x = m;
+                decimal x = m;
                 while (x > 1)
                 {
                     x /= 10;
@@ -648,10 +640,10 @@ namespace McNeight
             decimal y;
             decimal ySquared;
 
-            var iteration = 0;
-            var exponent = 0m;
-            var nextAdd = 0m;
-            var result = 0m;
+            decimal iteration = 0;
+            decimal exponent = 0m;
+            decimal nextAdd = 0m;
+            decimal result = 0m;
 
             y = (m - 1) / (m + 1);
             ySquared = y * y;
@@ -697,17 +689,30 @@ namespace McNeight
 #endif
         public static decimal Log(decimal m, decimal newBase)
         {
-            // Short circuit the checks below if m is 1 because
-            // that will yield 0 in the numerator below and give us
-            // 0 for any base, even ones that would yield infinity.
-            if (m == 1)
-            {
-                return 0m;
-            }
+            // Substituting null for double.NaN
+            // if (!m.HasValue)
+            // {
+            //    return m;
+            // }
 
+            // Substituting null for double.NaN
+            // if (!newBase.HasValue)
+            // {
+            //    return newBase;
+            // }
+
+            // Substituting null for double.NaN
             if (newBase == 1)
             {
-                throw new InvalidOperationException("Logarithm for base 1 is undefined.");
+                double y = 13.0d / 0.0d;
+                // throw new InvalidOperationException("Logarithm for base 1 is undefined.");
+                // return null;
+            }
+
+            // if ((a != 1) && ((newBase == 0) || double.IsPositiveInfinity(newBase)))
+            if ((m != 1) && (newBase == 0))
+            {
+                // return null;
             }
 
             if (m < 0)
@@ -730,6 +735,14 @@ namespace McNeight
                 throw new OverflowException("Logarithm base would be negative infinity at zero which the Decimal data type can't represent!");
             }
 
+            // Short circuit the checks below if m is 1 because
+            // that will yield 0 in the numerator below and give us
+            // 0 for any base, even ones that would yield infinity.
+            if (m == 1)
+            {
+                return 0m;
+            }
+
             return Log(m) / Log(newBase);
         }
 
@@ -743,6 +756,12 @@ namespace McNeight
 #endif
         public static decimal Log10(decimal m)
         {
+            // Substituting null for double.NaN
+            // if (!m.HasValue)
+            // {
+            //    return null;
+            // }
+
             if (m < 0)
             {
                 throw new ArgumentException("Logarithm is a complex number for values less than zero!", nameof(m));
@@ -938,12 +957,13 @@ namespace McNeight
 #else
             if ((digits < 0) || (digits > MaxRoundingDigits))
             {
-                throw new ArgumentOutOfRangeException(nameof(digits), string.Format(SR.ArgumentOutOfRange_RoundingDigits, MaxRoundingDigits));
+                throw new ArgumentOutOfRangeException(nameof(digits), string.Format(CultureInfo.CurrentCulture, SR.ArgumentOutOfRange_RoundingDigits, MaxRoundingDigits));
             }
 
+            // if (mode < MidpointRounding.ToEven || mode > MidpointRounding.ToPositiveInfinity)
             if (mode < MidpointRounding.ToEven)
             {
-                throw new ArgumentException(string.Format(SR.Argument_InvalidEnumValue, mode, nameof(MidpointRounding)), nameof(mode));
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, SR.Argument_InvalidEnumValue, mode, nameof(MidpointRounding)), nameof(mode));
             }
 
             var bits = decimal.GetBits(m);
@@ -987,7 +1007,7 @@ namespace McNeight
 
                     default:
                         {
-                            throw new ArgumentException(string.Format(SR.Argument_InvalidEnumValue, mode, nameof(MidpointRounding)), nameof(mode));
+                            throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, SR.Argument_InvalidEnumValue, mode, nameof(MidpointRounding)), nameof(mode));
                         }
                 }
 
@@ -999,10 +1019,33 @@ namespace McNeight
         }
 
         /// <summary>
-        /// 
+        /// Returns a value indicating the sign of a <see cref="decimal"/> number.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="m">A signed <see cref="decimal"/> number.</param>
+        /// <returns>
+        /// A number that indicates the sign of <c>m</c>, as shown in the following table.
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>Return value</term>
+        ///         <description>Meaning</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>-1</term>
+        ///         <description><c>m</c> is less than zero.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>0</term>
+        ///         <description><c>m</c> is equal to zero.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>1</term>
+        ///         <description><c>m</c> is greater than zero.</description>
+        ///     </item>
+        /// </list>
+        /// </returns>
+        /// <exception cref="ArithmeticException">
+        /// <c>m</c> is equal to <see cref="null"/>.
+        /// </exception>
 #if !NET20 && !NET35 && !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
@@ -1012,7 +1055,11 @@ namespace McNeight
             //
             // Since decimal.Sign() is inaccessable, perform the comparison
             // the old fashioned way.
-            if (m < 0)
+            if (m == null)
+            {
+                throw new ArithmeticException(SR.Arithmetic_Null);
+            }
+            else if (m < 0)
             {
                 return -1;
             }
@@ -1041,9 +1088,9 @@ namespace McNeight
         public static decimal Sin(decimal m)
         {
             // Normalize to between -2Pi <= m <= 2Pi
-            m = Remainder(m, TwoPi);
+            m = Remainder(m, TAU);
 
-            if (m == 0 || m == PI || m == TwoPi)
+            if (m == 0 || m == PI || m == TAU)
             {
                 return 0;
             }
@@ -1078,7 +1125,7 @@ namespace McNeight
                     nextAdd *= -1 * mSquared / ((doubleIteration * doubleIteration) + doubleIteration);
                 }
 
-                //Debug.WriteLine("{0:000}:{1,33:+0.0000000000000000000000000000;-0.0000000000000000000000000000} ->{2,33:+0.0000000000000000000000000000;-0.0000000000000000000000000000}",
+                // Debug.WriteLine("{0:000}:{1,33:+0.0000000000000000000000000000;-0.0000000000000000000000000000} ->{2,33:+0.0000000000000000000000000000;-0.0000000000000000000000000000}",
                 //    doubleIteration / 2, nextAdd, result + nextAdd);
                 if (nextAdd == 0)
                 {
@@ -1192,27 +1239,19 @@ namespace McNeight
         public static decimal Tanh(decimal m) { throw null; }
 
         /// <summary>
-        /// 
+        /// Calculates the integral part of a specified <see cref="decimal"/> number.
         /// </summary>
-        /// <param name="m"></param>
-        /// <returns></returns>
+        /// <param name="m">A number to truncate.</param>
+        /// <returns>
+        /// The integral part of m; that is, the number that remains after
+        /// any fractional digits have been discarded.
+        /// </returns>
 #if !NET20 && !NET35 && !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static decimal Truncate(decimal m)
         {
             return decimal.Truncate(m);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-#if !NET20 && !NET35 && !NET40
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        private static void AbsHelper()
-        {
-            throw new OverflowException(SR.Overflow_NegateTwosCompNum);
         }
 
         /// <summary>

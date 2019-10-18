@@ -66,6 +66,33 @@ namespace McNeight {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Decimal byte array constructor requires an array of length four containing valid decimal bytes..
+        /// </summary>
+        internal static string Arg_DecBitCtor {
+            get {
+                return ResourceManager.GetString("Arg_DecBitCtor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attempted to divide by zero..
+        /// </summary>
+        internal static string Arg_DivideByZero {
+            get {
+                return ResourceManager.GetString("Arg_DivideByZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Object must be of type Decimal..
+        /// </summary>
+        internal static string Arg_MustBeDecimal {
+            get {
+                return ResourceManager.GetString("Arg_MustBeDecimal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The value &apos;{0}&apos; is not valid for this usage of the type {1}..
         /// </summary>
         internal static string Argument_InvalidEnumValue {
@@ -75,11 +102,65 @@ namespace McNeight {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Argument must be between {0} and {1}..
+        /// </summary>
+        internal static string ArgumentOutOfRange_Bounds_Lower_Upper {
+            get {
+                return ResourceManager.GetString("ArgumentOutOfRange_Bounds_Lower_Upper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decimal can only round to between 0 and 28 digits of precision..
+        /// </summary>
+        internal static string ArgumentOutOfRange_DecimalRound {
+            get {
+                return ResourceManager.GetString("ArgumentOutOfRange_DecimalRound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decimal&apos;s scale value must be between 0 and 28, inclusive..
+        /// </summary>
+        internal static string ArgumentOutOfRange_DecimalScale {
+            get {
+                return ResourceManager.GetString("ArgumentOutOfRange_DecimalScale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valid values are between {0} and {1}, inclusive..
+        /// </summary>
+        internal static string ArgumentOutOfRange_Range {
+            get {
+                return ResourceManager.GetString("ArgumentOutOfRange_Range", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rounding digits must be between 0 and {0}, inclusive..
         /// </summary>
         internal static string ArgumentOutOfRange_RoundingDigits {
             get {
                 return ResourceManager.GetString("ArgumentOutOfRange_RoundingDigits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Function does not accept decimal null values..
+        /// </summary>
+        internal static string Arithmetic_Null {
+            get {
+                return ResourceManager.GetString("Arithmetic_Null", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value was either too large or too small for a Decimal..
+        /// </summary>
+        internal static string Overflow_Decimal {
+            get {
+                return ResourceManager.GetString("Overflow_Decimal", resourceCulture);
             }
         }
         

@@ -214,18 +214,24 @@ references:
   isSpec: "True"
   fullName: McNeight.MathM.IEEERemainder
   nameWithType: MathM.IEEERemainder
-- uid: McNeight.MathM.Log(System.Decimal)
-  name: Log(Decimal)
-  href: api/McNeight.MathM.html#McNeight_MathM_Log_System_Decimal_
-  commentId: M:McNeight.MathM.Log(System.Decimal)
-  fullName: McNeight.MathM.Log(System.Decimal)
-  nameWithType: MathM.Log(Decimal)
-- uid: McNeight.MathM.Log(System.Decimal,System.Decimal)
-  name: Log(Decimal, Decimal)
-  href: api/McNeight.MathM.html#McNeight_MathM_Log_System_Decimal_System_Decimal_
-  commentId: M:McNeight.MathM.Log(System.Decimal,System.Decimal)
-  fullName: McNeight.MathM.Log(System.Decimal, System.Decimal)
-  nameWithType: MathM.Log(Decimal, Decimal)
+- uid: McNeight.MathM.Log(System.Nullable{System.Decimal})
+  name: Log(Nullable<Decimal>)
+  href: api/McNeight.MathM.html#McNeight_MathM_Log_System_Nullable_System_Decimal__
+  commentId: M:McNeight.MathM.Log(System.Nullable{System.Decimal})
+  name.vb: Log(Nullable(Of Decimal))
+  fullName: McNeight.MathM.Log(System.Nullable<System.Decimal>)
+  fullName.vb: McNeight.MathM.Log(System.Nullable(Of System.Decimal))
+  nameWithType: MathM.Log(Nullable<Decimal>)
+  nameWithType.vb: MathM.Log(Nullable(Of Decimal))
+- uid: McNeight.MathM.Log(System.Nullable{System.Decimal},System.Nullable{System.Decimal})
+  name: Log(Nullable<Decimal>, Nullable<Decimal>)
+  href: api/McNeight.MathM.html#McNeight_MathM_Log_System_Nullable_System_Decimal__System_Nullable_System_Decimal__
+  commentId: M:McNeight.MathM.Log(System.Nullable{System.Decimal},System.Nullable{System.Decimal})
+  name.vb: Log(Nullable(Of Decimal), Nullable(Of Decimal))
+  fullName: McNeight.MathM.Log(System.Nullable<System.Decimal>, System.Nullable<System.Decimal>)
+  fullName.vb: McNeight.MathM.Log(System.Nullable(Of System.Decimal), System.Nullable(Of System.Decimal))
+  nameWithType: MathM.Log(Nullable<Decimal>, Nullable<Decimal>)
+  nameWithType.vb: MathM.Log(Nullable(Of Decimal), Nullable(Of Decimal))
 - uid: McNeight.MathM.Log*
   name: Log
   href: api/McNeight.MathM.html#McNeight_MathM_Log_
@@ -233,12 +239,15 @@ references:
   isSpec: "True"
   fullName: McNeight.MathM.Log
   nameWithType: MathM.Log
-- uid: McNeight.MathM.Log10(System.Decimal)
-  name: Log10(Decimal)
-  href: api/McNeight.MathM.html#McNeight_MathM_Log10_System_Decimal_
-  commentId: M:McNeight.MathM.Log10(System.Decimal)
-  fullName: McNeight.MathM.Log10(System.Decimal)
-  nameWithType: MathM.Log10(Decimal)
+- uid: McNeight.MathM.Log10(System.Nullable{System.Decimal})
+  name: Log10(Nullable<Decimal>)
+  href: api/McNeight.MathM.html#McNeight_MathM_Log10_System_Nullable_System_Decimal__
+  commentId: M:McNeight.MathM.Log10(System.Nullable{System.Decimal})
+  name.vb: Log10(Nullable(Of Decimal))
+  fullName: McNeight.MathM.Log10(System.Nullable<System.Decimal>)
+  fullName.vb: McNeight.MathM.Log10(System.Nullable(Of System.Decimal))
+  nameWithType: MathM.Log10(Nullable<Decimal>)
+  nameWithType.vb: MathM.Log10(Nullable(Of Decimal))
 - uid: McNeight.MathM.Log10*
   name: Log10
   href: api/McNeight.MathM.html#McNeight_MathM_Log10_

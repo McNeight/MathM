@@ -9,7 +9,7 @@
       "output": {
         ".html": {
           "relative_path": "api/McNeight.MathM.html",
-          "hash": "hmxou5ycPaxvMgRa0d5fGA=="
+          "hash": "6iybgdxNLikC4af79TqxaA=="
         }
       },
       "is_incremental": false,
@@ -46,6 +46,18 @@
         ".html": {
           "relative_path": "api/toc.html",
           "hash": "tPOzVofholxbfrxybUFafw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Decimal.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Decimal.html",
+          "hash": "rQwF7BS8G20WZDZwckjqGg=="
         }
       },
       "is_incremental": false,
@@ -147,6 +159,13 @@
         "full_build_reason_code": "ForceRebuild"
       },
       "processors": {
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
@@ -156,14 +175,7 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 6,
-          "skipped_file_count": 0
-        },
-        "TocDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build",
-          "total_file_count": 0,
+          "total_file_count": 7,
           "skipped_file_count": 0
         }
       }
